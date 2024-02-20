@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="2ViT-TTS: Visual Text-to-Speech with Scalable Diffusion Transformer">
+  <meta property="og:title" content="2ViT-TTS: Visual Text-to-Speech with Scalable Diffusion Transformer"/>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">    
+  
+  <title>2ViT-TTS: Visual Text-to-Speech with Scalable Diffusion Transformer</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/audio-table.css">
+  <link rel="stylesheet" type="text/css" href="static/css/dropdown_style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">MMTTS: Visual-Guided Text-to-Speech with Hierarchical Multi-Modal Learning</h1>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+	  
+	  <section class="section hero is-light">
+	    <div class="container is-max-desktop">
+	      <!-- Abstract. -->
+	      <div class="columns is-centered has-text-centered">
+		<div class="column is-four-fifths">
+		  <h2 class="title is-3">Abstract</h2>
+		  <div class="content has-text-justified">
+		    <p>
+				Abstract: Visual-guided text-to-speech (TTS) aims to synthesize audio that aligns with the content, pitch, rhythm, and other acoustic features, while also considering the physical environment to incorporate realistic reverberations. Recently,language modeling with multiple modalities has achieved impressive performance in many generative tasks. However, the long sequence length, and complex acoustic characteristics along the modality gap hinder its applications to visual-guided text-to-speech. In this work, we propose MMTTS, the first Multi-Modal TTS model with discrete acoustic units. The audios are tokenized by a pre-trained neural codec, in which multiple residual vector-quantizers (RVQs) are adopted. To address the challenges in multi-modal language modeling, we utilize a hierarchical transformer with acoustic modeling across RVQs and temporal modeling within RVQs. Furthermore, we propose multi-scale cross-modal matching, including text-visual and audio-visual fusion, to integrate visual information. To alleviate the data scarcity, we introduce efficient self-supervised learning to extend MMTTS to low-resource scenarios. Experimental results show that MMTTS achieves state-of-the-art performance, outperforming previous advanced approaches and cascaded systems by a large margin. Audio samples are available at <a href="http://MMTTS.github.io"><i>http://MMTTS.github.io/</i></a>
+		    </p>
+		  </div>
+		</div>
+	      </div>
+
+	    </div>
+           <!-- Image Insertion -->
+    
+	  </section>
+
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <img src="pipeline.png" alt="Multi-Modal Text-to-Speech Synthesis" style="width: 63%; height: auto;">
+        </div>
+      </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+            <h1 class="title is-3">A.Performance Comparison</h1>
+      <h4 class="title is-4">Test-Seen</h4>
+      <div class="grid-container">
+          <table >
+              <tr >
+                  <th></th>
+                  <th>Recording</th>
+                  <th>ProDiff</th>
+                  <th>Visual-DiffSpeech</th>
+                  <th>Visual-UniAudio</th>
+                  <th>Cascaded</th>
+                  <th>ViT-TTS</th>
+                  <th>MMTTS</th>
+              </tr>
+        
+              <tr >
+                  <th style=" vertical-align:middle;" width="10%">Sample 1: </th>
+                  <th style=" vertical-align:middle; text-align:center;">
+                      <audio  controls style="width: 150px;display: block; margin-left: auto; margin-right: auto;"><source src="Supplementary_Material/Performance/Test-Seen/GT/00000.wav"          type="audio/wav"></audio>
+                  </th>
+             
+                  <th style=" vertical-align:middle; text-align:center;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/ProDiff/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/Visual-DiffSpeech/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="submit_new/Visual-UniAudio/seen/1.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/Cascaded/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/ViT-TTS/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/MMTTS(ours)/seen/1.wav"          type="audio/wav"></audio>
+                  </th>
+              </tr>
+    
+
+              <tr>
+                  <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+                  <th style=" vertical-align:middle;" colspan="4">
+                      <img  src="Supplementary_Material/Performance/Test-Seen/imgs/00000_rgb.jpg" height="20">
+                  </th>
+                  <th style=" vertical-align:middle;" colspan="3">
+                      <img  src="Supplementary_Material/Performance/Test-Seen/imgs/00000_depth.jpg" height="20">
+                  </th>
+              </tr>
+    
+              <tr > 
+                  <th style=" vertical-align:middle;"> Reference Text: </th>
+                  <td colspan="7" style=" vertical-align:middle;">when you argue about the nature of god apart from the question of justification you may be as profound as you like</td>
+              </tr>
+          
+    
+              <tr >
+                  <th style=" vertical-align:middle;" width="10%">Sample 2: </th>
+                  <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/GT/00001.wav"          type="audio/wav"></audio>
+               
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/ProDiff/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/Visual-DiffSpeech/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="submit_new/Visual-UniAudio/seen/2.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/Cascaded/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/ViT-TTS/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/MMTTS(ours)/seen/2.wav"          type="audio/wav"></audio>
+                </th>
+                
+              </tr>
+    
+              <tr>
+                  <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+                  <th style=" vertical-align:middle;" colspan="4">
+                      <img  src="Supplementary_Material/Performance/Test-Seen/imgs/00001_rgb.jpg" height="20">
+                  </th>
+                  <th style=" vertical-align:middle;" colspan="3">
+                      <img  src="Supplementary_Material/Performance/Test-Seen/imgs/00001_depth.jpg" height="20">
+                  </th>
+              </tr>
+    
+              <tr > 
+                  <th style=" vertical-align:middle;"> Reference Text: </th>
+                  <td colspan="7" style=" vertical-align:middle;">the wharves of brooklyn and every part of new york bordering the east river were crowded with curiosity seekers</td>
+              
+              </tr>
+    
+              <tr >
+                  <th style=" vertical-align:middle;" width="10%">Sample 3: </th>
+                  <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/GT/00002.wav"          type="audio/wav"></audio>
+                
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/ProDiff/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/Visual-DiffSpeech/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="submit_new/Visual-UniAudio/seen/3.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/Cascaded/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Seen/ViT-TTS/00002.wav"          type="audio/wav"></audio>
+                </th>
+                
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/MMTTS(ours)/seen/3.wav"          type="audio/wav"></audio>
+                </th>
+
+              </tr>
+    
+              <tr>
+                  <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+                  <th style=" vertical-align:middle;" colspan="4">
+                      <img  src="Supplementary_Material/Performance/Test-Seen/imgs/00002_rgb.jpg" height="20">
+                  </th>
+                  <th style=" vertical-align:middle;" colspan="3">
+                      <img  src="Supplementary_Material/Performance/Test-Seen/imgs/00002_depth.jpg" height="20">
+                  </th>
+              </tr>
+    
+              <tr > 
+                  <th style=" vertical-align:middle;"> Reference Text: </th>
+                  <td colspan="7" style=" vertical-align:middle;">the top floor belongs to miles mc laren</td>
+              
+              </tr>
+          </table>
+      </div>
+      
+      <br>
+      <h4 class="title is-4">Test-Unseen</h4>
+      <div class="grid-container">
+          <table >
+              <tr >
+                 <th></th>
+                  <th>Recording</th>
+                  <th>ProDiff</th>
+                  <th>Visual-DiffSpeech</th>
+                  <th>Visual-UniAudio</th>
+                  <th>Cascaded</th>
+                  <th>ViT-TTS</th>
+                  <th>MMTTS</th>
+              </tr>
+     
+              <tr >
+                  <th style=" vertical-align:middle;" width="10%">Sample 1: </th>
+                  <th style=" vertical-align:middle;">
+                      <audio  controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/GT/00000.wav"          type="audio/wav"></audio>
+                
+                  <th style=" vertical-align:middle;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/ProDiff/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/Visual-DiffSpeech/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="submit_new/Visual-UniAudio/unseen/1.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/Cascaded/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/ViT-TTS/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/MMTTS(ours)/unseen/1.wav"          type="audio/wav"></audio>
+                  </th>
+              </tr>
+    
+              <tr>
+                  <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+                  <th style=" vertical-align:middle;" colspan="4">
+                      <img  src="Supplementary_Material/Performance/Test-Unseen/imgs/00000_rgb.jpg" height="20">
+                  </th>
+                  <th style=" vertical-align:middle;" colspan="3">
+                      <img  src="Supplementary_Material/Performance/Test-Unseen/imgs/00000_depth.jpg" height="20">
+                  </th>
+              </tr>
+    
+              <tr > 
+                  <th style=" vertical-align:middle;"> Reference Text: </th>
+                  <td colspan="7" style=" vertical-align:middle;">the task will not be difficult returned david hesitating though i greatly fear your presence would rather increase than mitigate his unhappy fortunes
+                </td>
+              </tr>
+          
+    
+              <tr >
+                  <th style=" vertical-align:middle;" width="10%">Sample 2: </th>
+                  <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/GT/00001.wav"          type="audio/wav"></audio>
+               
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/ProDiff/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/Visual-DiffSpeech/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="submit_new/Visual-UniAudio/unseen/2.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/Cascaded/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/ViT-TTS/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/MMTTS(ours)/unseen/2.wav"          type="audio/wav"></audio>
+                </th>
+              </tr>
+    
+              <tr>
+                  <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+                  <th style=" vertical-align:middle;" colspan="4">
+                      <img  src="Supplementary_Material/Performance/Test-Unseen/imgs/00001_rgb.jpg" height="20">
+                  </th>
+                  <th style=" vertical-align:middle;" colspan="3">
+                      <img  src="Supplementary_Material/Performance/Test-Unseen/imgs/00001_depth.jpg" height="20">
+                  </th>
+              </tr>
+    
+              <tr > 
+                  <th style=" vertical-align:middle;"> Reference Text: </th>
+                  <td colspan="7" style=" vertical-align:middle;">by this time the two gentlemen had reached the palings and had got down from their horses it was plain they meant to come in
+                </td>
+              
+              </tr>
+    
+              <tr >
+                  <th style=" vertical-align:middle;" width="10%">Sample 3: </th>
+                  <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/GT/00002.wav"          type="audio/wav"></audio>
+               
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/ProDiff/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/Visual-DiffSpeech/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="submit_new/Visual-UniAudio/unseen/3.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/Cascaded/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Performance/Test-Unseen/ViT-TTS/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="submit_new/MMTTS(ours)/unseen/3.wav"          type="audio/wav"></audio>
+                </th>
+
+              </tr>
+    
+              <tr>
+                  <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+                  <th style=" vertical-align:middle;" colspan="4">
+                      <img  src="Supplementary_Material/Performance/Test-Unseen/imgs/00002_rgb.jpg" height="20">
+                  </th>
+                  <th style=" vertical-align:middle;" colspan="3">
+                      <img  src="Supplementary_Material/Performance/Test-Unseen/imgs/00002_depth.jpg" height="20">
+                  </th>
+              </tr>
+    
+              <tr > 
+                  <th style=" vertical-align:middle;"> Reference Text: </th>
+                  <td colspan="7" style=" vertical-align:middle;">im going to see mister marshall said kenneth and discover what i can do to assist you thank you sir
+                </td>
+              
+              </tr>
+          </table>
+      </div>
+      </div>
+      </div>
+      </div>
+    
+      
+    </section>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+            <h1 class="title is-3">B.Low-Resource Learning</h1>
+      <h4 class="title is-4">Test-Seen</h4>
+      <div class="grid-container">
+          <table >
+              <tr >
+                  <th></th>
+                  <th>Recording</th>
+                  <th>VIT-TTS(1h)</th>
+                  <th>VIT-TTS(2h)</th>
+                  <th>VIT-TTS(5h)</th>
+                  <th>MMTTS(10min)</th>
+                  <th>MMTTS(1h)</th>
+                  <th>MMTTS(10h)</th>
+
+              </tr>
+        
+              <tr >
+                  <th style=" vertical-align:middle;" width="10%">Sample 1: </th>
+                  <th style=" vertical-align:middle;">
+                      <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/GT/00000.wav"          type="audio/wav"></audio>
+                  <th style=" vertical-align:middle;">
+                      <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/Finetune1h/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/Finetune2h/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                      <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/Finetune5h/00000.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/low-resource/10min/seen/1.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                        <audio controls style="width: 150px;"><source src="submit_new/low-resource/1h/seen/1.wav"          type="audio/wav"></audio>
+                  </th>
+                  <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/low-resource/10h/seen/1.wav"          type="audio/wav"></audio>
+                  </th>
+
+                
+              </tr>
+    
+              <tr>
+                  <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+                  <th style=" vertical-align:middle;" colspan="4">
+                      <img  src="Supplementary_Material/Low_Resource/Test-Seen/imgs/00000_rgb.jpg" height="20">
+                  </th>
+                  <th style=" vertical-align:middle;" colspan="3">
+                      <img  src="Supplementary_Material/Low_Resource/Test-Seen/imgs/00000_depth.jpg" height="20">
+                  </th>
+              </tr>
+    
+              <tr > 
+                  <th style=" vertical-align:middle;"> Reference Text: </th>
+                  <td colspan="7" style=" vertical-align:middle;">when you argue about the nature of god apart from the question of justification you may be as profound as you like</td>
+              </tr>
+    
+              <tr >
+                <th style=" vertical-align:middle;" width="10%">Sample 2: </th>
+                <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/GT/00001.wav"          type="audio/wav"></audio>
+                <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/Finetune1h/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/Finetune2h/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/Finetune5h/00001.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/low-resource/10min/seen/2.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                        <audio controls style="width: 150px;"><source src="submit_new/low-resource/1h/seen/2.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/low-resource/10h/seen/2.wav"          type="audio/wav"></audio>
+                </th>
+              
+            </tr>
+    
+            <tr>
+                <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+                <th style=" vertical-align:middle;" colspan="4">
+                    <img  src="Supplementary_Material/Low_Resource/Test-Seen/imgs/00001_rgb.jpg" height="20">
+                </th>
+                <th style=" vertical-align:middle;" colspan="3">
+                    <img  src="Supplementary_Material/Low_Resource/Test-Seen/imgs/00001_depth.jpg" height="20">
+                </th>
+            </tr>
+    
+            <tr > 
+                <th style=" vertical-align:middle;"> Reference Text: </th>
+                <td colspan="7" style=" vertical-align:middle;">the wharves of brooklyn and every part of new york bordering the east river were crowded with curiosity seekers</td>
+            </tr>
+    
+            <tr >
+                <th style=" vertical-align:middle;" width="10%">Sample 3: </th>
+                <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/GT/00002.wav"          type="audio/wav"></audio>
+                <th style=" vertical-align:middle;">
+                    <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/Finetune1h/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/Finetune2h/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Seen/Finetune5h/00002.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/low-resource/10min/seen/3.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                        <audio controls style="width: 150px;"><source src="submit_new/low-resource/1h/seen/3.wav"          type="audio/wav"></audio>
+                </th>
+                <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/low-resource/10h/seen/3.wav"          type="audio/wav"></audio>
+                </th>
+              
+            </tr>
+    
+            <tr>
+                <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+                <th style=" vertical-align:middle;" colspan="4">
+                    <img  src="Supplementary_Material/Low_Resource/Test-Seen/imgs/00002_rgb.jpg" height="20">
+                </th>
+                <th style=" vertical-align:middle;" colspan="3">
+                    <img  src="Supplementary_Material/Low_Resource/Test-Seen/imgs/00002_depth.jpg" height="20">
+                </th>
+            </tr>
+    
+            <tr > 
+                <th style=" vertical-align:middle;"> Reference Text: </th>
+                <td colspan="7" style=" vertical-align:middle;">the top floor belongs to miles mc laren</td>
+            </tr>
+    
+    
+            
+          </table>
+      </div>
+
+  
+  <br>
+  <h4 class="title is-4">Test-Unseen</h4>
+  <div class="grid-container">
+      <table >
+          <tr >
+            <th></th>
+            <th>Recording</th>
+            <th>VIT-TTS(1h)</th>
+            <th>VIT-TTS(2h)</th>
+            <th>VIT-TTS(5h)</th>
+            <th>MMTTS(10min)</th>
+            <th>MMTTS(1h)</th>
+            <th>MMTTS(10h)</th>
+          </tr>
+          <!-- <tr>
+              <th colspan="6" style="text-align:left">Sample 1: </th>
+          </tr> -->
+          <tr >
+              <th style=" vertical-align:middle;" width="10%">Sample 1: </th>
+              <th style=" vertical-align:middle;">
+                  <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/GT/00000.wav"          type="audio/wav"></audio>
+              <th style=" vertical-align:middle;">
+                  <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/Finetune1h/00000.wav"          type="audio/wav"></audio>
+              </th>
+              <th style=" vertical-align:middle;">
+                  <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/Finetune2h/00000.wav"          type="audio/wav"></audio>
+              </th>
+              <th style=" vertical-align:middle;">
+                  <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/Finetune5h/00000.wav"          type="audio/wav"></audio>
+              </th>
+              <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="submit_new/low-resource/10min/unseen/1.wav"          type="audio/wav"></audio>
+              </th>
+              <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/low-resource/1h/unseen/1.wav"          type="audio/wav"></audio>
+              </th>
+              <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="submit_new/low-resource/10h/unseen/1.wav"          type="audio/wav"></audio>
+              </th>
+            
+          </tr>
+
+          <tr>
+              <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+              <th style=" vertical-align:middle;" colspan="4">
+                  <img  src="Supplementary_Material/Low_Resource/Test-Unseen/imgs/00000_rgb.jpg" height="20">
+              </th>
+              <th style=" vertical-align:middle;" colspan="3">
+                  <img  src="Supplementary_Material/Low_Resource/Test-Unseen/imgs/00000_depth.jpg" height="20">
+              </th>
+          </tr>
+
+          <tr > 
+              <th style=" vertical-align:middle;"> Reference Text: </th>
+              <td colspan="7" style=" vertical-align:middle;">the task will not be difficult returned david hesitating though i greatly fear your presence would rather increase than mitigate his unhappy fortunes
+            </td>
+          </tr>
+
+          <tr >
+            <th style=" vertical-align:middle;" width="10%">Sample 2: </th>
+            <th style=" vertical-align:middle;">
+                <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/GT/00001.wav"          type="audio/wav"></audio>
+            <th style=" vertical-align:middle;">
+                <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/Finetune1h/00001.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/Finetune2h/00001.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/Finetune5h/00001.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="submit_new/low-resource/10min/unseen/2.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/low-resource/1h/unseen/2.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="submit_new/low-resource/10h/unseen/2.wav"          type="audio/wav"></audio>
+            </th>
+          
+        </tr>
+
+        <tr>
+            <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+            <th style=" vertical-align:middle;" colspan="4">
+                <img  src="Supplementary_Material/Low_Resource/Test-Unseen/imgs/00001_rgb.jpg" height="20">
+            </th>
+            <th style=" vertical-align:middle;" colspan="3">
+                <img  src="Supplementary_Material/Low_Resource/Test-Unseen/imgs/00001_depth.jpg" height="20">
+            </th>
+        </tr>
+
+        <tr > 
+            <th style=" vertical-align:middle;"> Reference Text: </th>
+            <td colspan="7" style=" vertical-align:middle;">by this time the two gentlemen had reached the palings and had got down from their horses it was plain they meant to come in
+            </td>
+        </tr>
+
+        <tr >
+            <th style=" vertical-align:middle;" width="10%">Sample 3: </th>
+            <th style=" vertical-align:middle;">
+                <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/GT/00002.wav"          type="audio/wav"></audio>
+            <th style=" vertical-align:middle;">
+                <audio  controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/Finetune1h/00002.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/Finetune2h/00002.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="Supplementary_Material/Low_Resource/Test-Unseen/Finetune5h/00002.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="submit_new/low-resource/10min/unseen/3.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                    <audio controls style="width: 150px;"><source src="submit_new/low-resource/1h/unseen/3.wav"          type="audio/wav"></audio>
+            </th>
+            <th style=" vertical-align:middle;">
+                <audio controls style="width: 150px;"><source src="submit_new/low-resource/10h/unseen/3.wav"          type="audio/wav"></audio>
+            </th>
+          
+        </tr>
+
+        <tr>
+            <th style=" vertical-align:middle;"> Target RGB/Depth Image: </th>
+            <th style=" vertical-align:middle;" colspan="4">
+                <img  src="Supplementary_Material/Low_Resource/Test-Unseen/imgs/00002_rgb.jpg" height="20">
+            </th>
+            <th style=" vertical-align:middle;" colspan="3">
+                <img  src="Supplementary_Material/Low_Resource/Test-Unseen/imgs/00002_depth.jpg" height="20">
+            </th>
+        </tr>
+
+        <tr > 
+            <th style=" vertical-align:middle;"> Reference Text: </th>
+            <td colspan="7" style=" vertical-align:middle;">im going to see mister marshall said kenneth and discover what i can do to assist you thank you sir
+            </td>
+        </tr>
+
+
+        
+      </table>
+  </div>
+  
+  </div>
+  </div>
+  </div>
+
+  
+</section>
+ 
